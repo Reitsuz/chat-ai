@@ -1,6 +1,6 @@
+import os
 from flask import Flask, request, jsonify, send_from_directory
 from ai.brain import get_reply, learn
-import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -23,3 +23,8 @@ def chat():
     learn(text, reply)
 
     return jsonify({"reply": reply})
+
+port = int(os.environ.get("PORT", 5000))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=port)
